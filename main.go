@@ -27,7 +27,7 @@ func main() {
 		if err != nil || resp.StatusCode != http.StatusOK {
 			errorCount++
 			if errorCount >= maxErrors {
-				fmt.Println("Unable to fetch server statistic.")
+				fmt.Println("Unable to fetch server statistic")
 				return
 			}
 			time.Sleep(checkInterval)
