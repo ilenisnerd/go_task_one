@@ -78,7 +78,7 @@ func main() {
 		}
 
 		// Check Network Bandwidth
-		freeNetwork := usedNetwork * 8 / 1024 / 1024 // Convert to Mbit/s
+		freeNetwork := totalNetwork - usedNetwork/8/1024/1024 // Convert to Mbit/s
 		if usedNetwork/totalNetwork > networkThreshold {
 			fmt.Printf("Network bandwidth usage high: %.0f Mbit/s available\n", freeNetwork)
 		}
