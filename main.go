@@ -46,7 +46,7 @@ func main() {
 
 		data := strings.Split(strings.TrimSpace(string(body)), ",")
 		if len(data) != 7 {
-			fmt.Println("Invalid data format received.")
+			fmt.Println("Invalid data format received")
 			time.Sleep(checkInterval)
 			continue
 		}
