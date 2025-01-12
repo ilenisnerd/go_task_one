@@ -27,7 +27,7 @@ func main() {
 		if err != nil || resp.StatusCode != http.StatusOK {
 			errorCount++
 			if errorCount >= maxErrors {
-				fmt.Println("Unable to fetch server statistic")
+				fmt.Println("Unable to fetch server statistic.")
 				return
 			}
 			time.Sleep(checkInterval)
@@ -46,7 +46,7 @@ func main() {
 
 		data := strings.Split(strings.TrimSpace(string(body)), ",")
 		if len(data) != 7 {
-			fmt.Println("Invalid data format received")
+			fmt.Println("Invalid data format received.")
 			time.Sleep(checkInterval)
 			continue
 		}
@@ -62,25 +62,25 @@ func main() {
 
 		// Check Load Average
 		if loadAverage > maxLoadAverage {
-			fmt.Printf("Load Average is too high: %.2f\n", loadAverage)
+			fmt.Printf("Load Average is too high: %.0f\n", loadAverage)
 		}
 
 		// Check Memory Usage
 		memoryUsage := usedMemory / totalMemory
 		if memoryUsage > memoryThreshold {
-			fmt.Printf("Memory usage too high: %.2f%%\n", memoryUsage*100)
+			fmt.Printf("Memory usage too high: %.0f%%\n", memoryUsage*100)
 		}
 
 		// Check Disk Space
 		freeDisk := (totalDisk - usedDisk) / (1024 * 1024) // Convert to MB
 		if usedDisk/totalDisk > diskThreshold {
-			fmt.Printf("Free disk space is too low: %.2f Mb left\n", freeDisk)
+			fmt.Printf("Free disk space is too low: %.0f Mb left\n", freeDisk)
 		}
 
 		// Check Network Bandwidth
 		freeNetwork := (totalNetwork - usedNetwork) / (1024 * 1024) * 8 // Convert to Mbit/s
 		if usedNetwork/totalNetwork > networkThreshold {
-			fmt.Printf("Network bandwidth usage high: %.2f Mbit/s available\n", freeNetwork)
+			fmt.Printf("Network bandwidth usage high: %.0f Mbit/s available\n", freeNetwork)
 		}
 
 		time.Sleep(checkInterval)
